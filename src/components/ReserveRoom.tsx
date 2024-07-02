@@ -89,6 +89,7 @@ const ReserveRoom: React.FC = () => {
           <div className="flex justify-center mt-4">
             <div className="text-center text-sm text-gray-600">{message}</div>
           </div>
+          <h2 className="text-lg font-bold mt-4">Remaining availability:</h2>
           <ul>
             {resources.map((resource) => (
               <li key={resource._id}>
