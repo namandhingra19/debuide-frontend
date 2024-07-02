@@ -65,20 +65,22 @@ const ReserveRoom: React.FC = () => {
       {loading && <LoaderOverlay />}
 
       <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-        <div className="max-w-md w-full p-8 bg-white rounded-lg shadow-lg">
-          <h1 className="text-2xl font-bold mb-4">Hospital Room Reservation</h1>
+        <div className="max-w-lg w-full p-8 bg-white rounded-lg shadow-lg">
+          <div className="flex justify-between items-center pb-4">
+            <h1 className="text-2xl font-bold">Hospital Room Reservation</h1>
+            <button
+              onClick={reallocateData}
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded"
+            >
+              Reset Data
+            </button>
+          </div>
           <CustomDropdown
             rooms={rooms}
             selectedRoom={roomType}
             setselectedRoom={setRoomType}
           />
           <div className="flex justify-center mt-4">
-            <button
-              onClick={reallocateData}
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 mr-4"
-            >
-              Reallocate Data
-            </button>
             <button
               onClick={handleReserve}
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4"
@@ -89,7 +91,9 @@ const ReserveRoom: React.FC = () => {
           <div className="flex justify-center mt-4">
             <div className="text-center text-sm text-gray-600">{message}</div>
           </div>
-          <h2 className="text-lg font-bold mt-4">Remaining availability:</h2>
+          {resources.length > 0 && (
+            <h2 className="text-lg font-bold mt-4">Remaining availability:</h2>
+          )}
           <ul>
             {resources.map((resource) => (
               <li key={resource._id}>
